@@ -1,0 +1,180 @@
+<!--
+License: CC0 unless noted otherwise
+HTML and CSS generated using qwen2.5-coder:14b
+Quotes generated using gemma3:12b-it-qat
+-->
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Eeyore's Quiet Corner</title>
+		<style>
+			/* Generated using google-webfonts-helper */
+			@font-face {
+				/* License: OFL - https://fonts.google.com/specimen/Freckle+Face/license */
+				font-display: swap;
+				font-family: 'Freckle Face';
+				font-style: normal;
+				font-weight: 400;
+				src: url('freckle-face-v15-latin-regular.woff2') format('woff2');
+			}
+
+			:root {
+				--bg-color: #f5deb3;
+				--text-color: #2f4f4f;
+				--quote-bg-color: #b8860b;
+				--quote-text-color: #ffffff;
+				--border-color: #a0522d;
+			}
+
+			@media (prefers-color-scheme: dark) {
+				:root {
+					--bg-color: #333;
+					--text-color: #ccc;
+					--quote-bg-color: #6b4226;
+					--quote-text-color: #ffffff;
+					--border-color: #575757;
+				}
+
+				#eeyore-img {
+					filter: invert(0.8);
+				}
+			}
+
+			body {
+				font-family: 'Freckle Face', 'Courier New', Courier, monospace;
+				background-color: var(--bg-color);
+				color: var(--text-color);
+				margin: 0;
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				justify-content: space-between;
+				min-height: 100vh;
+			}
+
+			header {
+				text-align: center;
+				width: 100%;
+			}
+
+			main {
+				flex: 1;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+			}
+
+			#quote-box {
+				position: relative;
+				background-color: var(--quote-bg-color);
+				color: var(--quote-text-color);
+				border: 2px solid var(--border-color);
+				padding: 20px;
+				border-radius: 20px;
+				font-size: 1.5em;
+				max-width: 50%;
+				text-align: center;
+				/*animation: moveAround 5s infinite ease-in-out;*/
+			}
+
+			@keyframes moveAround {
+				0%, 100% { transform: translate(-50%, -50%) rotate(0deg); }
+				25% { transform: translate(-48%, -50%) rotate(2deg); }
+				50% { transform: translate(-52%, -50%) rotate(-2deg); }
+				75% { transform: translate(-49%, -50%) rotate(1deg); }
+			}
+
+			img {
+				display: block;
+				margin: 20px auto;
+				max-width: 50%;
+				height: auto;
+				border-radius: 50%;
+				position: relative;
+			}
+		</style>
+	</head>
+	<body>
+		<header>
+			<h1 style="font-size: 2.5em;">Eeyore's Quiet Corner</h1>
+			<h2>Not much going on here. Just thoughts.</h2>
+		</header>
+
+		<main>
+			<div id="quote-box" onclick="getRandomQuote()">The world is full of things that aren't quite right.</div>
+		</main>
+
+		<footer>
+			<img id="eeyore-img" src="eeyore.png" alt="Eeyore, Public Domain, By Ernest Howard Shepard from Winnie-the-Pooh (1926) by A A Milne">
+		</footer>
+
+		<script>
+			const quotes = [
+				//Basic
+				"Aaahhh, what a funny world.",
+				"A little rain never hurt anyone.",
+				"A pessimist sees the difficulty in every opportunity; an optimist sees the opportunity in every difficulty.",
+				"Even a gloomy day can be rather peaceful.",
+				"Gloom is good for you. It makes you appreciate the little things.",
+				"How do you know that I'm happy? Because I’m still here.",
+				"I always thought that it was important to feel things, even if they were sad.",
+				"I don’t expect to be thanked.",
+				"I don’t know why it’s so difficult to explain things.",
+				"I expect nothing. That’s why I’m never disappointed.",
+				"I feel rather... still.",
+				"I’m afraid I can’t help you.",
+				"I’m not expecting anything interesting to happen.",
+				"I'm not sure what you'd like me to do, but I'm willing to try.",
+				"It’s all a bit... confusing.",
+				"It’s always difficult to know what to say.",
+				"It's better to know nothing at all than to know something that ain't so.",
+				"It's difficult to be gloomy when everything is going so well.",
+				"It's good to be out, even if it’s not very exciting.",
+				"I wonder what's going to happen today?",
+				"The best way to appreciate a thing is to look at it from all angles.",
+				"The most inconvenient thing is when things don’t happen.",
+				"Well, at least it's been a nice day for thinking.",
+				//Detailed
+				"A lost button. A chipped cup. A forgotten umbrella. Small losses accumulate, you know. They become... a way of life.",
+				"A perfectly good stick. Just lying there. No one needs it. Much like... well, like me, I suppose.",
+				"A quiet afternoon isn’t always lonely. Sometimes, it's just...peaceful. In its own, quiet way.",
+				"A small kindness, offered without expectation, is a rather pleasant surprise. Though I don’t expect them often.",
+				"Even a drooping flower can still offer a certain grace. A quiet resilience, perhaps.",
+				"Even when the rain falls, the grass still grows. It just takes a little longer to notice.",
+				"I expect nothing, so you see, I'm never disappointed. It's a rather lonely way to be, but at least it avoids unpleasant surprises.",
+				"I’m not saying things are <em>bad</em>. Just... understated. Quietly not remarkable.",
+				"It’s alright to feel things deeply. Even if the feeling is just... grey.",
+				"It’s alright to have days where your energy reserves are... depleted. To simply pause, and let the world spin by.",
+				"It's alright to retreat. To build a small, quiet corner for yourself. The world won't notice, and that's the point.",
+				"It’s not a weakness to need stillness. It’s...a requirement, sometimes. For everything to simply <em>be</em>.",
+				"It's not the loss of things that gets you down, it's the feeling that maybe nothing <em>ever</em> belonged to you in the first place.",
+				"It's okay to not be okay. Especially when the world is a bit... overwhelming. A quiet retreat is a perfectly reasonable response.",
+				"Oh, bother. The sun is shining. It's probably a mistake.",
+				"People say, 'Look on the bright side.' I'm not sure there <em>is</em> a bright side. Just... a dimmer side, perhaps. Which is quite serviceable, really.",
+				"Sometimes, being overlooked is the safest place to be. Less chance of losing something, you know.",
+				"Sometimes, just existing is an achievement. A perfectly adequate one, at that.",
+				"Sometimes, the world moves too fast. It’s perfectly alright to fall behind, to take your time... to just <em>be</em>.",
+				"The best company is often the kind that doesn't ask you to change.",
+				"The best-laid plans are still just plans. And sometimes, the unexpected is far less upsetting than the expectation itself.",
+				"There's a certain peace in accepting that you're not needed. Less responsibility, you see.",
+				"There's beauty in the mundane. The way the rain settles on the leaves. The rhythm of the ticking clock. If you bother to look.",
+				"The world doesn’t always understand your rhythm. And that’s... well, that’s perfectly fine. Your rhythm is yours, and that’s all that matters.",
+				"The world expects you to follow a certain path. But sometimes, the best journeys are the ones you make on your own, even if it’s a bit... meandering.",
+				"Things aren't always 'fixed,' but they <em>can</em> settle. And sometimes, settled is good enough.",
+				"Things may not always <em>make sense</em>. And that’s... well, that's probably just the way things are. It's alright to just feel your feelings about it.",
+				"You don't need to explain yourself. Your presence is enough. Even if it’s a bit... understated.",
+				"You don't need to <em>fix</em> yourself to be valuable. You're perfectly acceptable...as you are, even if that's a bit...droopy.",
+				"Your story doesn't have to be a triumph. It can be a quiet unfolding. And that's perfectly acceptable.",
+			];
+
+			function getRandomQuote() {
+				//Credit (CC BY-SA 4.0): https://stackoverflow.com/a/4550514
+				document.getElementById('quote-box').innerHTML = quotes[Math.floor(Math.random() * quotes.length)];
+			}
+
+			getRandomQuote();
+		</script>
+	</body>
+</html>
