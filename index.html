@@ -170,9 +170,16 @@ Quotes generated using gemma3:12b-it-qat
 				"Your story doesn't have to be a triumph. It can be a quiet unfolding. And that's perfectly acceptable.",
 			];
 
+			var quotesAvailable = quotes.slice();
+
 			function getRandomQuote() {
+				if (quotesAvailable.length == 0) {
+					quotesAvailable = quotes.slice();
+				}
 				//Credit (CC BY-SA 4.0): https://stackoverflow.com/a/4550514
-				document.getElementById('quote-box').innerHTML = quotes[Math.floor(Math.random() * quotes.length)];
+				const random = Math.floor(Math.random() * quotesAvailable.length);
+				document.getElementById('quote-box').innerHTML = quotesAvailable[random];
+				quotesAvailable.splice(random, 1);
 			}
 
 			getRandomQuote();
